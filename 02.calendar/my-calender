@@ -6,7 +6,9 @@ today = Date.today
 #今日の日付から年月を取り出し最終日を求める
 first_date = Date.new(today.year,today.month,1)
 last_date = Date.new(today.year,today.month, -1)
-
+#カレンダーの年月日を表示
+calender_date = "#{today.month}月#{today.year}"
+print calender_date.center(20) + "\n"
 #曜日を表示
 puts ["日","月","火","水","木","金","土"].join(" ")
 #初日から最終日まで表示し、土曜で改行
