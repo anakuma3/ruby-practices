@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+#今日の日付をtodayに代入
+require 'date'
+today = Date.today
+
+#今日の日付から年月を取り出し最終日を求める
+first_date = Date.new(today.year,today.month,1)
+last_date = Date.new(today.year,today.month, -1)
+
+#曜日を表示
+puts ["日","月","火","水","木","金","土"].join(" ")
+#初日から最終日まで表示し、土曜で改行
+print "   " * first_date.wday
+(first_date..last_date).each do |date|
+  print " " if date.day < 10
+  print date.day
+  print date.saturday? ? "\n" : " "
+end
