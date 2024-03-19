@@ -4,21 +4,21 @@ require 'optparse'
 
 options = ARGV.getopts('y:','m:')
 
-#今日の日付をtodayに代入
+# 今日の日付をtodayに代入
 today = Date.today
 
-#オプションがある場合はその引数、ない場合は今日の日付から年月を取り出し最終日を求める
-first_date = options["y"].nil? && options["m"].nil? ?
-              Date.new(today.year, today.month, 1) :
-              Date.new(options["y"].to_i, options["m"].to_i, 1)
-last_date = Date.new(first_date.year, first_date.month, -1)
+# オプションがある場合はその引数、ない場合は今日の日付から年月を取り出し最終日を求める
+year = options["y"].nil? ? today.year : options["y"].to_i 
+month = options["m"].nil? ? today.month : options["m"].to_i 
+first_date = Date.new(year, month, 1)
+last_date = Date.new(year, month, -1)
 
-#カレンダーの年月日を表示
-calender_date = "#{first_date.month}月#{first_date.year}"
+# カレンダーの年月日を表示
+calender_date = "#{month}月#{year}"
 print calender_date.center(20) + "\n"
-#曜日を表示
+# 曜日を表示
 puts ["日","月","火","水","木","金","土"].join(" ")
-#初日から最終日まで表示し、土曜で改行
+# 初日から最終日まで表示し、土曜で改行
 print "   " * first_date.wday
 (first_date..last_date).each do |date|
   print " " if date.day < 10
