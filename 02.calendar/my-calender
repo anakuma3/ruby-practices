@@ -14,7 +14,7 @@ first_date = Date.new(year, month, 1)
 last_date = Date.new(year, month, -1)
 
 # カレンダーの年月日を表示
-calender_date = "#{month}月#{year}"
+calender_date = "#{month}月 #{year}"
 print calender_date.center(20) + "\n"
 # 曜日を表示
 puts ["日","月","火","水","木","金","土"].join(" ")
@@ -22,6 +22,6 @@ puts ["日","月","火","水","木","金","土"].join(" ")
 print "   " * first_date.wday
 (first_date..last_date).each do |date|
   print " " if date.day < 10
-  print date.day
+  print date == today ? "\e[47m\e[30m#{date.day}\e[0m" : date.day
   print date.saturday? ? "\n" : " "
 end
