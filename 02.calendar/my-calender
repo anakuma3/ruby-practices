@@ -3,8 +3,6 @@ require 'date'
 require 'optparse'
 
 options = ARGV.getopts('y:','m:')
-
-# 今日の日付をtodayに代入
 today = Date.today
 
 # オプションがある場合はその引数、ない場合は今日の日付から年月を取り出し最終日を求める
@@ -21,7 +19,7 @@ puts ["日","月","火","水","木","金","土"].join(" ")
 # 初日から最終日まで表示し、土曜で改行
 print "   " * first_date.wday
 (first_date..last_date).each do |date|
-  print " " if date.day < 10
-  print date == today ? "\e[47m\e[30m#{date.day}\e[0m" : date.day
+  day = date.day.to_s.rjust(2)
+  print date == today ? "\e[47m\e[30m#{day}\e[0m" : day
   print date.saturday? ? "\n" : " "
 end
